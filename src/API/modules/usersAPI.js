@@ -6,5 +6,8 @@ export const usersAPI = {
     },
     createUser(payload) {
         return axiosInstance.post('/v1/users', payload);
-    }
+    },
+    findUser(id){
+        return axiosInstance.get("/v1/users/" + id);
+    },
 }

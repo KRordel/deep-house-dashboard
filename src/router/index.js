@@ -6,6 +6,7 @@ import Dashboard from "../pages/index.vue";
 import Login from "../pages/auth/login.vue";
 import UsersIndex from "../pages/users/index.vue";
 import UsersCreate from "../pages/users/create.vue";
+import UsersEdit from "../pages/users/edit.vue";
 
 const routes = [
     {
@@ -13,12 +14,12 @@ const routes = [
         component: DefaultLayout,
         children: [
             {
-                path: '',
+                path: 'dashboard',
                 name: 'dashboard',
                 component: Dashboard
             },
             {
-                path: '/users',
+                path: 'users',
                 children: [
                     {
                         path: '',
@@ -26,9 +27,14 @@ const routes = [
                         component: UsersIndex
                     },
                     {
-                        path: '/create',
+                        path: 'create',
                         name: 'users.create',
                         component: UsersCreate
+                    },
+                    {
+                        path: ':id/edit',
+                        name: 'users.edit',
+                        component: UsersEdit
                     }
                 ]
             }
