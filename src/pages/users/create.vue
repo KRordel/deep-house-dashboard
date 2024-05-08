@@ -1,5 +1,4 @@
 <script setup>
-	import {usersAPI} from "../../API/modules/usersAPI.js";
 	import {reactive, ref} from "vue";
 	import {useRouter} from 'vue-router';
 

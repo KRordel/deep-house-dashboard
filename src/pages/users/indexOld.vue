@@ -1,43 +1,37 @@
 <script setup>
-	import {useStore} from 'vuex';
-	import {computed, onMounted, ref} from "vue";
+	import {usersAPI} from "../../API/modules/usersAPI.js";
+	import {onMounted, ref, watch} from "vue";
 
-	const store = useStore();
-
-	const headers = [
+	const loading = ref(false);
+	const items = ref([]);
+	const itemsLength = ref(0);
+	const params = ref({
+	  	page: 1,
+	  	limit: 10
+	});
+	const headers = ref([
 	  	{key: 'id', title: 'ID', sortable:false, align: 'center'},
 	  	{key: 'name', title: 'Имя', sortable:false},
 	  	{key: 'email', title: 'Email', sortable:false},
 	  	{key: 'actions', title: '', sortable:false},
-	];
+	]);
 
-	const loading = ref(false);
-	const users = computed(() => store.getters["usersStore/users"]);
-	const total = computed(() => store.getters["usersStore/total"]);
-	const params = computed(() => store.getters["usersStore/params"]);
+	async function getUsers() {
+	  	loading.value = true;
+	  	try {
+	  	  	const response = await usersAPI.getUsers(params.value);
+	  	  	items.value = response.data.data;
+	  	  	itemsLength.value = response.data.meta.total;
 
-	const fetchUsers = async () => {
-		try {
-			loading.value = true;
-			await store.dispatch('usersStore/fetchUsers', params.value);
-		} catch (e) {
-			console.error(e);
-		} finally {
-			loading.value = false;
-		}
-	};
-
-	const pageUpdateHandler = (event) => {
-		params.value.page = event;
-		fetchUsers();
+	  	} catch (e) {
+	  	  	console.log(e);
+	  	}
+	  	loading.value = false;
 	}
 
-	const limitUpdateHandler = (event) => {
-		params.value.limit = event;
-		fetchUsers();
-	}
+	onMounted(() => getUsers());
 
-	onMounted(async () => await fetchUsers());
+	watch(() => params.value, getUsers, {deep: true});
 </script>
 
 <template>
@@ -59,13 +53,11 @@
 				<v-card>
 					<v-data-table-server 
 						:headers="headers"
+						:items="items"
+						:items-length="itemsLength"
 						:loading="loading"
-						:items="users"
-						:items-length="total"
-						:page="params.page"
-						:items-per-page="params.limit"
-						@update:page="pageUpdateHandler"
-						@update:itemsPerPage="limitUpdateHandler"
+						@update:page="params.page=$event"
+						@update:itemsPerPage="params.limit=$event"
 					>
 						<template v-slot:item.actions="{ item }">
 							<v-btn-edit-page 
