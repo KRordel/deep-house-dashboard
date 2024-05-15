@@ -1,5 +1,5 @@
 import {usersService} from "../../API/services/usersService.js";
-// import router from "../../router/index.js";
+import router from "../../router/index.js";
 
 const state = {
     users: [],
@@ -54,6 +54,10 @@ const actions = {
     async updateUser({commit}, {payload, id}) {
         await usersService.updateUser(payload, id);
         await router.push({name: 'users.index'});
+    },
+    async deleteUser({dispatch}, id) {
+        await usersService.deleteUser(id);
+        dispatch('fetchUsers');
     },
 }
 

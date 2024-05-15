@@ -1,6 +1,7 @@
 <script setup>
 	import {useStore} from 'vuex';
 	import {computed, onMounted, ref} from "vue";
+	import DeleteConfirmation from "../../components/common/DeleteConfirmationComponent.vue";
 
 	const store = useStore();
 
@@ -26,6 +27,14 @@
 			loading.value = false;
 		}
 	};
+
+	const deleteUser = async (id) => {
+		try {
+			await store.dispatch('usersStore/deleteUser', id);
+		} catch (error) {
+			console.error('Error deleting users:', error);
+		}
+	}
 
 	const pageUpdateHandler = (event) => {
 		params.value.page = event;
@@ -68,11 +77,18 @@
 						@update:itemsPerPage="limitUpdateHandler"
 					>
 						<template v-slot:item.actions="{ item }">
-							<v-btn-edit-page 
-								icon="mdi-pencil-outline"
-								:to="{ name: 'users.edit', params: {id: item.id} }"
-							>
-							</v-btn-edit-page>
+							
+							<div class="d-flex">
+								<v-btn-edit-page 
+									icon="mdi-pencil-outline"
+									:to="{ name: 'users.edit', params: {id: item.id} }"
+								>
+								</v-btn-edit-page>
+								<DeleteConfirmation 
+									@modal:confirmed="deleteUser(item.id)" 
+								/>
+							</div>
+
 						</template>
 					</v-data-table-server>
 				</v-card>

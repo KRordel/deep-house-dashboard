@@ -50,6 +50,7 @@
 			if (!payload.password_confirmation) delete payload.password_confirmation;
 			await store.dispatch('usersStore/updateUser', {payload, id: id.value});
 		} catch (e) {
+			console.log(e);
 			error.value = e.response.data.errors;
 		} finally {
 			loading.value = false;

@@ -15,4 +15,7 @@ export const usersService = {
     updateUser(payload, id) {
         return axiosInstance.patch(`${uri}/${id}`, payload);
     },
+    deleteUser(id) {
+        return axiosInstance.delete(`${uri}/${id}`);
+    }
 }
