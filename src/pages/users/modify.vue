@@ -25,7 +25,7 @@
 			loading.value = true;
 			await store.dispatch('usersStore/createUser', payload);
 		} catch (e) {
-			error.value = e.response.data.errors;
+			error.value = e;
 		} finally {
 			loading.value = false;
 		}
@@ -50,8 +50,7 @@
 			if (!payload.password_confirmation) delete payload.password_confirmation;
 			await store.dispatch('usersStore/updateUser', {payload, id: id.value});
 		} catch (e) {
-			console.log(e);
-			error.value = e.response.data.errors;
+			error.value = e;
 		} finally {
 			loading.value = false;
 		}

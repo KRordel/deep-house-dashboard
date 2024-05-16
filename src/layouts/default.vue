@@ -79,7 +79,5 @@
             <router-view></router-view>
         </v-main>
 
-        
-
     </v-layout>
 </template>
