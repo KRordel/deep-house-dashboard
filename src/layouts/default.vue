@@ -1,6 +1,7 @@
 <script setup>
-
     import {ref} from "vue";
+    import { VSonner } from 'vuetify-sonner'
+    import 'vuetify-sonner/style.css'
 
     const drawer = ref(true);
 
@@ -78,6 +79,11 @@
         <v-main class="bg-grey-lighten-2" style="min-height: 100vh;">
             <router-view></router-view>
         </v-main>
+
+        <VSonner 
+            position="bottom-right" 
+            :visible-toasts="5"
+        />
 
     </v-layout>
 </template>

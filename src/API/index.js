@@ -1,6 +1,5 @@
 import axios from "axios";
-import {useToast} from "vue-toast-notification";
-import 'vue-toast-notification/dist/theme-bootstrap.css';
+import { toast } from 'vuetify-sonner'
 
 const axiosInstance = axios.create({
     baseURL:'http://127.0.0.1/api',
@@ -13,13 +12,16 @@ const axiosInstance = axios.create({
 
 const showNotification = (type, message) => {
     // console.log('showNotification', { type, message });
-    useToast().open({
-        message: message,
-        type: type,
-        position: 'bottom-right',
-        dismissible: true,
-        pauseOnHover: true,
-    });
+    toast[type](message, {
+        progressBar: true,
+    })
+    // toast('Внимание!', {
+    //     description: message,
+    //     cardProps: {
+    //         color: type,
+    //     },
+    //     progressBar: true,
+    // })
 };
 
 const errorHandler = (error) => {
