@@ -15,13 +15,6 @@ const showNotification = (type, message) => {
     toast[type](message, {
         progressBar: true,
     })
-    // toast('Внимание!', {
-    //     description: message,
-    //     cardProps: {
-    //         color: type,
-    //     },
-    //     progressBar: true,
-    // })
 };
 
 const errorHandler = (error) => {
