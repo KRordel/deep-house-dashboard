@@ -37,7 +37,17 @@ const routes = [
                         component: UsersModify
                     }
                 ]
-            }
+            },
+            {
+                path: 'faqs',
+                children: [
+                    {
+                        path: '',
+                        name: 'faqs.index',
+                        component: FaqsIndex
+                    },
+                ]
+            },
         ]
     },
     {
