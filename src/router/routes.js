@@ -8,6 +8,10 @@ const Dashboard = () => import("../pages/index.vue");
 const UsersIndex = () => import("../pages/users/index.vue");
 const UsersModify = () => import("../pages/users/modify.vue");
 
+const FaqsIndex = () => import("../pages/faqs/index.vue");
+const FaqsModify = () => import("../pages/faqs/modify.vue");
+
+
 const routes = [
     {
         path: '',
@@ -35,6 +39,26 @@ const routes = [
                         path: ':id/edit',
                         name: 'users.edit',
                         component: UsersModify
+                    }
+                ]
+            },
+            {
+                path: 'faqs',
+                children: [
+                    {
+                        path: '',
+                        name: 'faqs.index',
+                        component: FaqsIndex
+                    },
+                    {
+                        path: 'create',
+                        name: 'faqs.create',
+                        component: FaqsModify
+                    },
+                    {
+                        path: ':id/edit',
+                        name: 'faqs.edit',
+                        component: FaqsModify
                     }
                 ]
             },

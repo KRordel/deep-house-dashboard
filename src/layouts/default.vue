@@ -54,6 +54,12 @@
                 />
 
                 <v-list-item
+                    prepend-icon="mdi-frequently-asked-questions"
+                    title="Часто задаваемые вопросы"
+                    :to="{ name: 'faqs.index' }"
+                />
+
+                <v-list-item
                     prepend-icon="mdi-account-supervisor"
                     title="Пользователи"
                     :to="{ name: 'users.index' }"

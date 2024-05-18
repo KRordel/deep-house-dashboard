@@ -45,6 +45,17 @@ const vuetify = createVuetify({
             color: 'primary',
             variant: 'outlined',
         },
+        VTextarea:{
+            density: 'compact',
+            color: 'primary',
+            variant: 'outlined',
+        },
+        VSwitch:{
+            density: 'compact',
+            color: 'primary',
+            variant: 'outlined',
+            hideDetails: 'auto',
+        },
         VCard: {
             rounded: 'md',
             elevation: 4,
