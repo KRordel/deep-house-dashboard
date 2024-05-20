@@ -1,4 +1,5 @@
 import {axiosInstance} from "../index.js";
+import {showNotification} from "../index.js";
 
 const uri = '/v1/reviews';
 
@@ -16,6 +17,7 @@ export const reviewsService = {
         return axiosInstance.patch(`${uri}/${id}`, payload);
     },
     deleteReview(id) {
+        showNotification('warning', 'Запись удалена!');
         return axiosInstance.delete(`${uri}/${id}`);
     }
 }
