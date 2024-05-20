@@ -11,6 +11,9 @@ const UsersModify = () => import("../pages/users/modify.vue");
 const FaqsIndex = () => import("../pages/faqs/index.vue");
 const FaqsModify = () => import("../pages/faqs/modify.vue");
 
+const ReviewsIndex = () => import("../pages/reviews/index.vue");
+const ReviewsModify = () => import("../pages/reviews/modify.vue");
+
 
 const routes = [
     {
@@ -59,6 +62,26 @@ const routes = [
                         path: ':id/edit',
                         name: 'faqs.edit',
                         component: FaqsModify
+                    }
+                ]
+            },
+            {
+                path: 'reviews',
+                children: [
+                    {
+                        path: '',
+                        name: 'reviews.index',
+                        component: ReviewsIndex
+                    },
+                    {
+                        path: 'create',
+                        name: 'reviews.create',
+                        component: ReviewsModify
+                    },
+                    {
+                        path: ':id/edit',
+                        name: 'reviews.edit',
+                        component: ReviewsModify
                     }
                 ]
             },

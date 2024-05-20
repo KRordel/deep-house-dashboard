@@ -54,6 +54,12 @@
                 />
 
                 <v-list-item
+                    prepend-icon="mdi-comment-text-outline"
+                    title="Отзывы"
+                    :to="{ name: 'reviews.index' }"
+                />
+
+                <v-list-item
                     prepend-icon="mdi-frequently-asked-questions"
                     title="Часто задаваемые вопросы"
                     :to="{ name: 'faqs.index' }"
