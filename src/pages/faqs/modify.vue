@@ -13,7 +13,7 @@
 	const payload = reactive({
 		question: null,
 		answer: null,
-		is_active: null
+		is_active: false
 	});
 
 	const error = ref({});
